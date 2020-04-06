@@ -13,24 +13,24 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(1200, 1600);
 
     input = createElement('textarea', "Red is a rose. Run quickly. Quickly. Quickly. Quickly. Quickly.")
     input.size(200, 100);
-    input.position(500, 60)
+    input.position(900, 60)
 
     title = createInput();
     title.size(200, 20);
-    title.position(500, 20);
+    title.position(900, 20);
 
     nounCheck = createCheckbox('nouns', false);
-    nounCheck.position(500, 200);
+    nounCheck.position(900, 200);
     verbCheck = createCheckbox('verbs', false);
-    verbCheck.position(500, 220);
+    verbCheck.position(900, 220);
     adjCheck = createCheckbox('adjectives', false);
-    adjCheck.position(500, 240);
+    adjCheck.position(900, 240);
     advCheck = createCheckbox('adverbs', false);
-    advCheck.position(500, 260);
+    advCheck.position(900, 260);
 
 
 
@@ -42,21 +42,25 @@ function setup() {
     var n = filteredTags.includes("nn");
     console.log(n)
 
-
 }
 
 function draw() {
-    background(240);
+    background('#F4EBDC');
     translate(0, 100);
     noStroke();
     textAlign(LEFT, TOP);
+    textFont('Monospace');
 
     fill(30, 160);
     let defaultFill = "rgba(30, 30, 30, 0.7)"
 
-    textSize(20);
-
+    push()
+    textSize(24);
+    fill(10);
     text(title.value(), 20, -50);
+    pop()
+
+    textSize(14);
     poem = input.value();
     var tags = RiTa.getPosTags(poem, false);
     let filteredTags = tags.filter(a => a !== '.')
@@ -116,11 +120,11 @@ function draw() {
             // show words if mouse is pressed
             if (mouseIsPressed) {
                 fill(0);
-                text(words[j], 25 + currentOffset, 25 + i * 20);
+                text(words[j], 15 + currentOffset, 35 + i * 40);
             }
 
             // four pixels between words
-            currentOffset += wordWidth + 4;
+            currentOffset += wordWidth + 6;
         }
     }
 
