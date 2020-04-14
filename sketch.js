@@ -17,20 +17,24 @@ function setup() {
 
     input = createElement('textarea', "Red is a rose. Run quickly. Quickly. Quickly. Quickly. Quickly.")
     input.size(200, 100);
-    input.position(900, 60)
+    input.position(900, 100)
 
     title = createInput();
     title.size(200, 20);
     title.position(900, 20);
 
+    subtitle = createInput();
+    subtitle.size(200, 20);
+    subtitle.position(900, 50);
+
     nounCheck = createCheckbox('nouns', false);
-    nounCheck.position(900, 200);
+    nounCheck.position(900, 250);
     verbCheck = createCheckbox('verbs', false);
-    verbCheck.position(900, 220);
+    verbCheck.position(900, 270);
     adjCheck = createCheckbox('adjectives', false);
-    adjCheck.position(900, 240);
+    adjCheck.position(900, 290);
     advCheck = createCheckbox('adverbs', false);
-    advCheck.position(900, 260);
+    advCheck.position(900, 310);
 
 
 
@@ -40,24 +44,30 @@ function setup() {
     filteredTags = filteredTags.filter(a => a !== ',')
     console.log(filteredTags)
     var n = filteredTags.includes("nn");
-    console.log(n)
+    console.log(n);
 
 }
 
 function draw() {
-    background('#F4EBDC');
+    background(219);
     translate(0, 100);
     noStroke();
     textAlign(LEFT, TOP);
     textFont('Monospace');
 
     fill(30, 160);
-    let defaultFill = "rgba(30, 30, 30, 0.7)"
+    let defaultFill = "rgba(12, 43, 81, 0.6)"
 
     push()
-    textSize(24);
+    textSize(28);
     fill(10);
-    text(title.value(), 20, -50);
+    text(title.value(), 25, -70);
+    pop()
+
+    push()
+    textSize(12);
+    fill(10);
+    text(subtitle.value(), 25, -35);
     pop()
 
     textSize(14);
@@ -72,7 +82,7 @@ function draw() {
     // loop through words in poem
     for (var i = 0; i < poemLength.length; i++) {
         var words = poemLength[i].split(" ");
-        var currentOffset = 0;
+        var currentOffset = 10;
         let tag = "";
 
         // pull out length of each word and draw circle
@@ -113,9 +123,9 @@ function draw() {
             // rect version
             // rect(25 + currentOffset, 25 + i * 20,
             //     wordWidth, 6);
-
+            
             // circle version
-            ellipse(25 + currentOffset, 25 + i * 40, wordWidth * 0.6);
+            ellipse(25 + currentOffset, 25 + i * 40, wordWidth * 0.7);
 
             // show words if mouse is pressed
             if (mouseIsPressed) {
@@ -124,7 +134,7 @@ function draw() {
             }
 
             // four pixels between words
-            currentOffset += wordWidth + 6;
+            currentOffset += wordWidth + 12;
         }
     }
 
